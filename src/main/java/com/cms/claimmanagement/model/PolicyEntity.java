@@ -1,6 +1,9 @@
 package com.cms.claimmanagement.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import jdk.jfr.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CurrentTimestamp;
@@ -10,40 +13,66 @@ import org.springframework.data.jpa.repository.Temporal;
 import java.time.LocalDate;
 import java.util.Objects;
 @Table (name = "policy_entity")
-@Entity(name = "PolicyEntity")
+@Entity(name = "Policy_Entity")
 public class PolicyEntity {
 
-        @Id
+    public PolicyEntity(){}
+    @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private  Long id;
-        private final String PolicyNo;
-        private final String InsuredFirstName;
-        private final String InsuredLastName;
-        @UpdateTimestamp
-        private final LocalDate dateOfInsurance;
-        private final String emailId;
-        private final String vehicleNo;
-        private final boolean status;
+    private  String PolicyNo;
+    @NotBlank
+    @Size(min=5)
+    private  String InsuredFirstName;
+    private  String InsuredLastName;
+    @UpdateTimestamp
+        private  LocalDate dateOfInsurance;
 
-        public PolicyEntity(
-                String PolicyNo,
-                String InsuredFirstName,
-                String InsuredLastName,
-                LocalDate dateOfInsurance,
-                String emailId,
-                String vehicleNo,
-                boolean status
-        ) {
-            this.PolicyNo = PolicyNo;
-            this.InsuredFirstName = InsuredFirstName;
-            this.InsuredLastName = InsuredLastName;
-            this.dateOfInsurance = dateOfInsurance;
-            this.emailId = emailId;
-            this.vehicleNo = vehicleNo;
-            this.status = status;
-        }
+    private  String emailId;
+    private  String vehicleNo;
+        private  boolean status;
 
-        public String PolicyNo() {
+    public String getPolicyNo() {
+        return PolicyNo;
+    }
+
+    public String getInsuredFirstName() {
+        return InsuredFirstName;
+    }
+
+    public PolicyEntity(PolicyEntity policyEntity) {
+
+    }
+
+    public void setPolicyNo(String policyNo) {
+        PolicyNo = policyNo;
+    }
+
+    public void setInsuredFirstName(String insuredFirstName) {
+        InsuredFirstName = insuredFirstName;
+    }
+
+    public void setInsuredLastName(String insuredLastName) {
+        InsuredLastName = insuredLastName;
+    }
+
+    public void setDateOfInsurance(LocalDate dateOfInsurance) {
+        this.dateOfInsurance = dateOfInsurance;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public void setVehicleNo(String vehicleNo) {
+        this.vehicleNo = vehicleNo;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String PolicyNo() {
             return PolicyNo;
         }
 
