@@ -17,5 +17,4 @@ public class Fees {
     private Double fees;
 
 
-
 }
