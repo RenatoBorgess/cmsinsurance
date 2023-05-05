@@ -2,13 +2,11 @@ package com.cms.claimmanagement.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 import jakarta.validation.constraints.Size;
-import jdk.jfr.Timestamp;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.CurrentTimestamp;
+
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.jpa.repository.Temporal;
+
 
 import java.time.LocalDate;
 import java.util.Objects;

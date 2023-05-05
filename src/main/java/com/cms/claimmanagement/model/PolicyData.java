@@ -7,12 +7,11 @@ import jakarta.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 public record PolicyData(
-        @Pattern(regexp = "")
-        String PolicyNo,
+
         String InsuredFirstName,
         String InsuredLastName,
         LocalDate dateOfInsurance,
-        @Email
+
         String emailId,
         @NotNull
         String vehicleNo,
