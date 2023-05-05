@@ -1,20 +1,18 @@
 package com.cms.claimmanagement.controller;
 
 import com.cms.claimmanagement.model.PolicyData;
+import com.cms.claimmanagement.model.PolicyDataResponse;
 import com.cms.claimmanagement.model.PolicyEntity;
 import com.cms.claimmanagement.model.PolicyRepository;
 import com.cms.claimmanagement.service.PolicyService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/policy")
+@RequestMapping("/api")
 public class PolicyController {
-    @Autowired
-    PolicyRepository policyRepository;
     @Autowired
     PolicyService policyService;
 
