@@ -21,26 +21,26 @@ public class PolicyService {
     @Autowired
     public PolicyRepository policyRepository;
 
-    public List<PolicyDataResponse> listPolicies(){
+    public List<PolicyDataResponse> listPolicies() {
         return policyRepository.findAll().stream().map(PolicyDataResponse::new).toList();
-        }
-
-
-    public PolicyEntity savePolicy(PolicyData policyRe){
-                    PolicyEntity policyRes;
-            policyRes = new PolicyEntity();
-                    policyRes.setPolicyNo(policyRe.PolicyNo());
-                    policyRes.setInsuredFirstName(policyRe.InsuredFirstName());
-                    policyRes.setInsuredLastName(policyRe.InsuredLastName());
-                    policyRes.setDateOfInsurance(policyRe.dateOfInsurance());
-                    policyRes.setEmailId(policyRe.emailId());
-                    policyRes.setVehicleNo(policyRe.vehicleNo());
-                    policyRes.setStatus(policyRe.status());
-                    policyRepository.save(policyRes);
-
-         return policyRes;
-
-
-        }
     }
+
+
+    public PolicyEntity savePolicy(PolicyData policyRe) {
+        PolicyEntity policyRes;
+        policyRes = new PolicyEntity();
+        policyRes.setPolicyNo(policyRe.PolicyNo());
+        policyRes.setInsuredFirstName(policyRe.InsuredFirstName());
+        policyRes.setInsuredLastName(policyRe.InsuredLastName());
+        policyRes.setDateOfInsurance(policyRe.dateOfInsurance());
+        policyRes.setEmailId(policyRe.emailId());
+        policyRes.setVehicleNo(policyRe.vehicleNo());
+        policyRes.setStatus(policyRe.status());
+        policyRepository.save(policyRes);
+
+        return policyRes;
+
+
+    }
+}
 

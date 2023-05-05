@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Entity
 public class ClaimDetails {
     @Id
-    @Size (min=10, max=10)
+    @Size(min = 10, max = 10)
     private Long claimId;
     //many-to-one
     private String policyNo;
