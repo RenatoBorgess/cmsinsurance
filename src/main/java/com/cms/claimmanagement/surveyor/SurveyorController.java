@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController("api/surveyor")
-public class surveyorController {
+public class SurveyorController {
 
     public SurveyorService surveyorService;
 
