@@ -27,5 +27,6 @@ public class PolicyController {
     public List<PolicyDataResponse> listPolicies() {
         return policyService.listPolicies();
     }
+
 }
 
