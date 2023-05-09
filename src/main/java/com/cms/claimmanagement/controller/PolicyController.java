@@ -1,9 +1,8 @@
 package com.cms.claimmanagement.controller;
 
-import com.cms.claimmanagement.model.PolicyData;
-import com.cms.claimmanagement.model.PolicyDataResponse;
-import com.cms.claimmanagement.model.PolicyEntity;
-import com.cms.claimmanagement.model.PolicyRepository;
+import com.cms.claimmanagement.repository.PolicyData;
+import com.cms.claimmanagement.repository.PolicyDataResponse;
+import com.cms.claimmanagement.repository.PolicyEntity;
 import com.cms.claimmanagement.service.PolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

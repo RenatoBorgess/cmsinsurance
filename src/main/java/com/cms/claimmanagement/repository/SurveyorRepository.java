@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.surveyor;
+package com.cms.claimmanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

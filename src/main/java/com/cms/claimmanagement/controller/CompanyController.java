@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.insuranceCompany.controller;
+package com.cms.claimmanagement.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,6 +1,8 @@
-package com.cms.claimmanagement.surveyor;
+package com.cms.claimmanagement.controller;
 
 
+import com.cms.claimmanagement.repository.SurveyReportDTO;
+import com.cms.claimmanagement.service.SurveyorService;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

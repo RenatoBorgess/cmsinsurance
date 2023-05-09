@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.model;
+package com.cms.claimmanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

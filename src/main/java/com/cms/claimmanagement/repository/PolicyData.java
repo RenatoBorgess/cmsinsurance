@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.model;
+package com.cms.claimmanagement.repository;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

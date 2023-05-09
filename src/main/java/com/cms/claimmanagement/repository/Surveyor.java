@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.insuranceCompany.repository;
+package com.cms.claimmanagement.repository;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
