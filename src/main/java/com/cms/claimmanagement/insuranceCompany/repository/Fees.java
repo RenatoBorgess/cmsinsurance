@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.repository;
+package com.cms.claimmanagement.insuranceCompany.repository;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

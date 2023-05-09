@@ -1,7 +1,7 @@
-package com.cms.claimmanagement.service;
+package com.cms.claimmanagement.surveyor.service;
 
 
-import com.cms.claimmanagement.repository.SurveyorRepository;
+import com.cms.claimmanagement.surveyor.repository.SurveyorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;

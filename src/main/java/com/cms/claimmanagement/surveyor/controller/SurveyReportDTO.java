@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.repository;
+package com.cms.claimmanagement.surveyor.controller;
 
 public record SurveyReportDTO(String claimId, String policyNo,
                               Long labourCharges, Long partsCost, Long policyClass,

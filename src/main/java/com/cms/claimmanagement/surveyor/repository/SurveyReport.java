@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.repository;
+package com.cms.claimmanagement.surveyor.repository;
 
 import jakarta.persistence.Entity;
 

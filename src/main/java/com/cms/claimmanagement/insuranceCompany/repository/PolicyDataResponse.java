@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.repository;
+package com.cms.claimmanagement.insuranceCompany.repository;
 
 public record PolicyDataResponse(String policyNo, String insuredFirstName) {
 
