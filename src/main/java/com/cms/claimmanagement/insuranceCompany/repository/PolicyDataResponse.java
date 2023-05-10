@@ -1,6 +1,4 @@
-package com.cms.claimmanagement.controller;
-
-import com.cms.claimmanagement.model.PolicyEntity;
+package com.cms.claimmanagement.insuranceCompany.repository;
 
 public record PolicyDataResponse(String policyNo, String insuredFirstName) {
 

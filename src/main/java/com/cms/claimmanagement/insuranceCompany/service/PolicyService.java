@@ -1,9 +1,9 @@
-package com.cms.claimmanagement.service;
+package com.cms.claimmanagement.insuranceCompany.service;
 
-import com.cms.claimmanagement.model.PolicyDataResponse;
-import com.cms.claimmanagement.model.PolicyData;
-import com.cms.claimmanagement.model.PolicyEntity;
-import com.cms.claimmanagement.model.PolicyRepository;
+import com.cms.claimmanagement.insuranceCompany.repository.PolicyDataResponse;
+import com.cms.claimmanagement.insuranceCompany.repository.PolicyData;
+import com.cms.claimmanagement.insuranceCompany.repository.PolicyEntity;
+import com.cms.claimmanagement.insuranceCompany.repository.PolicyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

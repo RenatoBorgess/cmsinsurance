@@ -1,9 +1,6 @@
-package com.cms.claimmanagement.model;
+package com.cms.claimmanagement.insuranceCompany.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-
-import java.util.Optional;
 
 public interface PolicyRepository extends JpaRepository<PolicyEntity, Long> {
 

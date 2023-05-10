@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.model;
+package com.cms.claimmanagement.insuranceCompany.repository;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -105,7 +105,7 @@ public class PolicyEntity {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (com.cms.claimmanagement.model.PolicyEntity) obj;
+        var that = (PolicyEntity) obj;
         return Objects.equals(this.PolicyNo, that.PolicyNo) &&
                 Objects.equals(this.InsuredFirstName, that.InsuredFirstName) &&
                 Objects.equals(this.InsuredLastName, that.InsuredLastName) &&
