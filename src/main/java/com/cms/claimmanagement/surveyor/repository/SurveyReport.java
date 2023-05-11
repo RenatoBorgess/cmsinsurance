@@ -1,11 +1,12 @@
 package com.cms.claimmanagement.surveyor.repository;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class SurveyReport {
-    public SurveyReport(){}
 
+    @Id
     private String claimId;
     private String policyNo;
     private Long labourCharges, partsCost, policyClass, depreciationCost, totalamount;
