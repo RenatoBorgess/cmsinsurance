@@ -2,13 +2,11 @@ package com.cms.claimmanagement.insuranceCompany.repository;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-
 import jakarta.validation.constraints.Size;
-
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "policy_entity")
@@ -18,14 +16,15 @@ public class PolicyEntity {
     public PolicyEntity() {
     }
 
+    @Column(name = "policy_no")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String PolicyNo;
+    private String policyNo;
+    @OneToMany(mappedBy = "policy")
+    private List<ClaimDetails> claimDetails;
     @NotBlank
     @Size(min = 5)
-    private String InsuredFirstName;
-    private String InsuredLastName;
+    private String insuredFirstName;
+    private String insuredLastName;
     @UpdateTimestamp
     private LocalDate dateOfInsurance;
 
@@ -34,11 +33,11 @@ public class PolicyEntity {
     private boolean status;
 
     public String getPolicyNo() {
-        return PolicyNo;
+        return policyNo;
     }
 
     public String getInsuredFirstName() {
-        return InsuredFirstName;
+        return insuredFirstName;
     }
 
     public PolicyEntity(PolicyEntity policyEntity) {
@@ -46,15 +45,15 @@ public class PolicyEntity {
     }
 
     public void setPolicyNo(String policyNo) {
-        PolicyNo = policyNo;
+        this.policyNo = policyNo;
     }
 
     public void setInsuredFirstName(String insuredFirstName) {
-        InsuredFirstName = insuredFirstName;
+        this.insuredFirstName = insuredFirstName;
     }
 
     public void setInsuredLastName(String insuredLastName) {
-        InsuredLastName = insuredLastName;
+        this.insuredLastName = insuredLastName;
     }
 
     public void setDateOfInsurance(LocalDate dateOfInsurance) {
@@ -74,15 +73,15 @@ public class PolicyEntity {
     }
 
     public String PolicyNo() {
-        return PolicyNo;
+        return policyNo;
     }
 
     public String InsuredFirstName() {
-        return InsuredFirstName;
+        return insuredFirstName;
     }
 
     public String InsuredLastName() {
-        return InsuredLastName;
+        return insuredLastName;
     }
 
     public LocalDate dateOfInsurance() {
@@ -106,9 +105,9 @@ public class PolicyEntity {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (PolicyEntity) obj;
-        return Objects.equals(this.PolicyNo, that.PolicyNo) &&
-                Objects.equals(this.InsuredFirstName, that.InsuredFirstName) &&
-                Objects.equals(this.InsuredLastName, that.InsuredLastName) &&
+        return Objects.equals(this.policyNo, that.policyNo) &&
+                Objects.equals(this.insuredFirstName, that.insuredFirstName) &&
+                Objects.equals(this.insuredLastName, that.insuredLastName) &&
                 Objects.equals(this.dateOfInsurance, that.dateOfInsurance) &&
                 Objects.equals(this.emailId, that.emailId) &&
                 Objects.equals(this.vehicleNo, that.vehicleNo) &&
@@ -117,15 +116,15 @@ public class PolicyEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(PolicyNo, InsuredFirstName, InsuredLastName, dateOfInsurance, emailId, vehicleNo, status);
+        return Objects.hash(policyNo, insuredFirstName, insuredLastName, dateOfInsurance, emailId, vehicleNo, status);
     }
 
     @Override
     public String toString() {
         return "PolicyData[" +
-                "PolicyNo=" + PolicyNo + ", " +
-                "InsuredFirstName=" + InsuredFirstName + ", " +
-                "InsuredLastName=" + InsuredLastName + ", " +
+                "PolicyNo=" + policyNo + ", " +
+                "InsuredFirstName=" + insuredFirstName + ", " +
+                "InsuredLastName=" + insuredLastName + ", " +
                 "dateOfInsurance=" + dateOfInsurance + ", " +
                 "emailId=" + emailId + ", " +
                 "vehicleNo=" + vehicleNo + ", " +
