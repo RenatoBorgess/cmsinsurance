@@ -45,9 +45,9 @@ public class ClaimService {
         claim.setClaimStatus(claimRequest.claimStatus());
         claim.setWithdrawClaim(claimRequest.withdrawClaim());
         claimRepository.save(claim);
-        String policyreturn = generateClaimId(claimRequest.policyNo());
+        ClaimDetails savedClaim = claimRepository.save(claim);
 
-        return policyreturn;
+        return savedClaim.getClaimId();
     }
 
     public List<ClaimResponseData> getAllClaims() {
