@@ -22,7 +22,7 @@ public class ClaimController {
     }
 
     @PostMapping(path = "/new")
-    public String createNewClaim(@RequestBody ClaimRequestData claimRequest){
+    public ClaimResponseData createNewClaim(@RequestBody ClaimRequestData claimRequest){
 
 
         return claimService.saveNewClaim(claimRequest) ;

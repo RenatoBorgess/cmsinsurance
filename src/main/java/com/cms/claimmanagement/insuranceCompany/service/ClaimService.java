@@ -25,7 +25,7 @@ public class ClaimService {
         return "CL"+fourPolicyNumbers+fourDigitYear;
 
     }
-    public String saveNewClaim(ClaimRequestData claimRequest) {
+    public ClaimResponseData saveNewClaim(ClaimRequestData claimRequest) {
         ClaimDetails claim = new ClaimDetails();
         claim.setClaimId(generateClaimId(claimRequest.policyNo()));
 
@@ -45,9 +45,10 @@ public class ClaimService {
         claim.setClaimStatus(claimRequest.claimStatus());
         claim.setWithdrawClaim(claimRequest.withdrawClaim());
         claimRepository.save(claim);
-        ClaimDetails savedClaim = claimRepository.save(claim);
+        ClaimResponseData claimId = new ClaimResponseData(claim.getClaimId());
 
-        return savedClaim.getClaimId();
+
+        return claimId;
     }
 
     public List<ClaimResponseData> getAllClaims() {
