@@ -1,24 +1,24 @@
 package com.cms.claimmanagement.insuranceCompany.repository;
 
 import com.cms.claimmanagement.surveyor.repository.Surveyor;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.time.LocalDate;
 
 @Entity
 public class ClaimDetails {
-
+    public ClaimDetails(){}
     @Id
     @Size(min = 10, max = 10)
     private String claimId;
     @ManyToOne
-    @JoinColumn(name = "policy_no", nullable = false)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "policy_no")
     private PolicyEntity policy;
     @Min(value = 0L, message = "The value must be positive")
     private Long estimatedLoss;
@@ -27,7 +27,7 @@ public class ClaimDetails {
     private boolean claimStatus;
 
     @ManyToOne
-    @JoinColumn(name = "surveyor_id", nullable = false)
+    @JoinColumn(name = "surveyor_id")
     private Surveyor surveyor;
     @Min(value = 0L, message = "The value must be positive")
     private Long amtApprovedBySurveyor;
