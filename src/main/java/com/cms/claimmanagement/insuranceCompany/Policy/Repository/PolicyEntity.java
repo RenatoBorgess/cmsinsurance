@@ -1,7 +1,7 @@
-package com.cms.claimmanagement.insuranceCompany.repository;
+package com.cms.claimmanagement.insuranceCompany.Policy.Repository;
 
+import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimDetails;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,9 +19,9 @@ public class PolicyEntity {
     @Column(name = "policy_no")
     @Id
     private String policyNo;
-    @OneToMany(mappedBy = "policy")
+    @OneToMany(mappedBy = "policy", cascade = CascadeType.ALL)
     private List<ClaimDetails> claimDetails;
-    @NotBlank
+
     @Size(min = 5)
     private String insuredFirstName;
     private String insuredLastName;

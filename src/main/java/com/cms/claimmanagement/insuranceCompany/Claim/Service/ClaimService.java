@@ -1,9 +1,12 @@
-package com.cms.claimmanagement.insuranceCompany.service;
+package com.cms.claimmanagement.insuranceCompany.Claim.Service;
 
-import com.cms.claimmanagement.insuranceCompany.controller.ClaimRequestData;
-import com.cms.claimmanagement.insuranceCompany.repository.*;
-import com.cms.claimmanagement.surveyor.repository.Surveyor;
-import com.cms.claimmanagement.surveyor.repository.SurveyorRepository;
+import com.cms.claimmanagement.insuranceCompany.Claim.Controller.ClaimRequestData;
+import com.cms.claimmanagement.insuranceCompany.Claim.Controller.ClaimResponseData;
+import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimDetails;
+import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimRepository;
+import com.cms.claimmanagement.insuranceCompany.ClaimRepository.*;
+import com.cms.claimmanagement.insuranceCompany.Policy.Repository.PolicyEntity;
+import com.cms.claimmanagement.insuranceCompany.Surveyor.Repository.Surveyor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

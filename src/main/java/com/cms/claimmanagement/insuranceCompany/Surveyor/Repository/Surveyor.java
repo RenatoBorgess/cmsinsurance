@@ -1,6 +1,6 @@
-package com.cms.claimmanagement.surveyor.repository;
+package com.cms.claimmanagement.insuranceCompany.Surveyor.Repository;
 
-import com.cms.claimmanagement.insuranceCompany.repository.ClaimDetails;
+import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimDetails;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 
