@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.surveyor.repository;
+package com.cms.claimmanagement.insuranceCompany.Surveyor.SurveyReport.Repository;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

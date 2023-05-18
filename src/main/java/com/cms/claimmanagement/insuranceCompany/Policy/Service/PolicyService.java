@@ -1,9 +1,9 @@
-package com.cms.claimmanagement.insuranceCompany.service;
+package com.cms.claimmanagement.insuranceCompany.Policy.Service;
 
-import com.cms.claimmanagement.insuranceCompany.repository.PolicyDataResponse;
-import com.cms.claimmanagement.insuranceCompany.repository.PolicyData;
-import com.cms.claimmanagement.insuranceCompany.repository.PolicyEntity;
-import com.cms.claimmanagement.insuranceCompany.repository.PolicyRepository;
+import com.cms.claimmanagement.insuranceCompany.Policy.Controller.PolicyResponseData;
+import com.cms.claimmanagement.insuranceCompany.Policy.Repository.PolicyEntity;
+import com.cms.claimmanagement.insuranceCompany.Policy.Repository.PolicyRepository;
+import com.cms.claimmanagement.insuranceCompany.Policy.Controller.PolicyRequestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +20,8 @@ public class PolicyService {
     @Autowired
     public PolicyRepository policyRepository;
 
-    public List<PolicyDataResponse> listPolicies(){
-        return policyRepository.findAll().stream().map(PolicyDataResponse::new).toList();
+    public List<PolicyResponseData> listPolicies(){
+        return policyRepository.findAll().stream().map(PolicyResponseData::new).toList();
     }
 
 
@@ -34,20 +34,22 @@ public class PolicyService {
         return firstTwoLetters.toUpperCase()+firstFourNumbers+twoDigitYear;
     }
 
-    public PolicyEntity savePolicy(PolicyData policyRe){
+    public PolicyResponseData savePolicy(PolicyRequestData policyRe){
                     PolicyEntity policyRes;
             policyRes = new PolicyEntity();
 
-                    policyRes.setPolicyNo(generatePolicyNo(policyRe.InsuredLastName(), policyRe.vehicleNo()));
-                    policyRes.setInsuredFirstName(policyRe.InsuredFirstName());
-                    policyRes.setInsuredLastName(policyRe.InsuredLastName());
+                    policyRes.setPolicyNo(generatePolicyNo(policyRe.insuredLastName(), policyRe.vehicleNo()));
+                    policyRes.setInsuredFirstName(policyRe.insuredFirstName());
+                    policyRes.setInsuredLastName(policyRe.insuredLastName());
                     policyRes.setDateOfInsurance(policyRe.dateOfInsurance());
                     policyRes.setEmailId(policyRe.emailId());
                     policyRes.setVehicleNo(policyRe.vehicleNo());
                     policyRes.setStatus(policyRe.status());
                     policyRepository.save(policyRes);
 
-         return policyRes;
+                    PolicyResponseData response = new PolicyResponseData(policyRes.getPolicyNo(),policyRes.InsuredFirstName());
+
+         return response;
 
 
         }

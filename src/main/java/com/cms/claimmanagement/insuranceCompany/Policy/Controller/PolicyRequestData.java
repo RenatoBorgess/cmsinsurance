@@ -1,4 +1,4 @@
-package com.cms.claimmanagement.insuranceCompany.repository;
+package com.cms.claimmanagement.insuranceCompany.Policy.Controller;
 
 import jakarta.validation.constraints.NotNull;
 
