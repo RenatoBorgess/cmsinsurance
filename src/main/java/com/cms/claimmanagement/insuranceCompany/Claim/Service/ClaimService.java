@@ -4,7 +4,6 @@ import com.cms.claimmanagement.insuranceCompany.Claim.Controller.ClaimRequestDat
 import com.cms.claimmanagement.insuranceCompany.Claim.Controller.ClaimResponseData;
 import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimDetails;
 import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimRepository;
-import com.cms.claimmanagement.insuranceCompany.ClaimRepository.*;
 import com.cms.claimmanagement.insuranceCompany.Policy.Repository.PolicyEntity;
 import com.cms.claimmanagement.insuranceCompany.Surveyor.Repository.Surveyor;
 import org.springframework.beans.factory.annotation.Autowired;
