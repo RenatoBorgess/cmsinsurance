@@ -2,7 +2,7 @@ package com.cms.claimmanagement.insuranceCompany.claim.controller;
 
 import java.time.LocalDate;
 
-public class insuredClaimRequestDTO {
+public class insuredClaimRequestData {
         private String policyNo;
         private Long estimatedLoss;
         private LocalDate dateOfAccident;
