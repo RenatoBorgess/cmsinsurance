@@ -1,9 +1,8 @@
 package com.cms.claimmanagement.insuranceCompany.claim.service;
 
-import com.cms.claimmanagement.insuranceCompany.Claim.Controller.ClaimResponseData;
-import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimDetails;
-import com.cms.claimmanagement.insuranceCompany.Claim.Repository.ClaimRepository;
-import com.cms.claimmanagement.insuranceCompany.Claim.Service.ClaimService;
+import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimResponseData;
+import com.cms.claimmanagement.insuranceCompany.claim.repository.ClaimDetails;
+import com.cms.claimmanagement.insuranceCompany.claim.repository.ClaimRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -83,6 +82,14 @@ public class ClaimServiceTest {
         Assertions.assertThat(claimResponseDataList).isNotEmpty();
         Assertions.assertThat(claimResponseDataList.size()).isEqualTo(1);
 
+    }
+    @Test
+    void shouldSaveClaim(){
+        //given
+        //ClaimRequestData claimRequestData = new ClaimRequestData(fksjdfjdk);
+        //when
+        //ClaimResponseData claimResponseData = claimService.saveNewClaim();
+        //then
     }
 
 }
