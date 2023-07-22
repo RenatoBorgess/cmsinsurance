@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record PolicyRequestData(
+public record PolicyRequestDTO(
 
         String insuredFirstName,
         String insuredLastName,

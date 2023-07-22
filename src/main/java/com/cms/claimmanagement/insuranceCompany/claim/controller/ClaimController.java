@@ -14,20 +14,20 @@ public class ClaimController {
     ClaimService claimService;
 
     @GetMapping
-    public ResponseEntity<List<ClaimResponseData>> getOpenClaims(){
-        List<ClaimResponseData> listOfOpenClaims = claimService.getAllOpenClaims();
+    public ResponseEntity<List<ClaimResponseDTO>> getOpenClaims(){
+        List<ClaimResponseDTO> listOfOpenClaims = claimService.getAllOpenClaims();
        return ResponseEntity.ok().body(listOfOpenClaims);
 
     }
 
     @PostMapping( consumes = {"application/json"})
-    public ResponseEntity<ClaimResponseData> createNewClaim(@RequestBody insuredClaimRequestDTO claimRequest){
-         ClaimResponseData savedClaim = claimService.saveNewClaim(claimRequest);
+    public ResponseEntity<ClaimResponseDTO> createNewClaim(@RequestBody InsuredClaimRequestDTO claimRequest){
+         ClaimResponseDTO savedClaim = claimService.saveNewClaim(claimRequest);
          return ResponseEntity.ok().body(savedClaim);
     }
     @PutMapping( consumes = {"application/json"})
-    public ResponseEntity<ClaimUpdateData> updateClaim(@RequestParam String claimId, @RequestBody ClaimUpdateData updateData){
-        ClaimUpdateData updatedClaim = claimService.updateClaim(updateData);
+    public ResponseEntity<ClaimUpdateDTO> updateClaim(@RequestParam String claimId, @RequestBody ClaimUpdateDTO updateData){
+        ClaimUpdateDTO updatedClaim = claimService.updateClaim(updateData);
         return ResponseEntity.ok().body(updatedClaim);
     }
 

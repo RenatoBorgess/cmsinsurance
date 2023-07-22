@@ -1,6 +1,6 @@
 package com.cms.claimmanagement.insuranceCompany.claim.service;
 
-import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimResponseData;
+import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimResponseDTO;
 import com.cms.claimmanagement.insuranceCompany.claim.repository.ClaimDetails;
 import com.cms.claimmanagement.insuranceCompany.claim.repository.ClaimRepository;
 import org.assertj.core.api.Assertions;
@@ -76,7 +76,7 @@ public class ClaimServiceTest {
         Mockito.when(claimRepository.findAll()).thenReturn(List.of(claimDetails1, claimDetails2));
 
         //when
-        List<ClaimResponseData> claimResponseDataList = claimService.getAllOpenClaims();
+        List<ClaimResponseDTO> claimResponseDataList = claimService.getAllOpenClaims();
 
         //then
         Assertions.assertThat(claimResponseDataList).isNotEmpty();
