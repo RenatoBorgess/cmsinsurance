@@ -1,0 +1,75 @@
+FORMAT: 1A
+HOST: https://cmsinsurance.apiblueprint.org/
+
+# CMSInsurance
+
+This API provides end-points for insurance company, surveyor, insured and accounting sector to manage vehicle insurane policies.
+
+The insurane company can create a policy, update claim, assign Surveyor to claim and retrieve claims by month and year.
+
+In a nutshell, this system manages the claims from the insured in all its scope.
+
+## Claims Collection [/v1/claims]
+
+### List All Claims [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "claimId" : "CL12342023",
+                "policyNo" : "BL123423",
+                "estimatedLoss" : 5000,
+                "dateOfAccident" : "2023-07-10",
+                "openClaimStatus" : "true",
+                "surveyorId" : 1,
+                "amtApprovedBySurveyor": 4500,
+                "insuranceCompanyApproval" : true,
+                "withdrawClaim" : false,
+                "surveyorFees" : 450
+            }
+        ]
+
+### Create a New Claim [POST] 
+
+Using this endpoint, the insurer will be able to add a new claim detail into the system 
+
++ Request (application/json)
+
+        {
+                "policyNo" : "BL123423",
+                "estimatedLoss" : 5000,
+                "dateOfAccident" : "2023-07-10",
+                "openClaimStatus" : "true",
+                "surveyorId" : 1,
+                "amtApprovedBySurveyor": 4500,
+                "insuranceCompanyApproval" : true,
+                "withdrawClaim" : false,
+                "surveyorFees" : 450
+        }
+
++ Response 201 (application/json)
+
+    
+
+    + Body
+
+            {
+                "claimId" : "CL12342023"
+            }
+            
+## Surveyor Collection [/v1/surveyors]
+
+### List All Surveyors [GET]
+
++ Response 200 (application/json)
+
+        [
+        
+            {
+            "surveyorId": 1,
+            "firstName" : "Renato",
+            "lastName" : "Borges",
+            "estimateLimit" : 5900
+            }
+        ]
