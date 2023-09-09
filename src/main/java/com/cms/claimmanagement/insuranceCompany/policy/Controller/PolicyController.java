@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/policy")
+@RequestMapping("/v1/policies")
 public class PolicyController {
     @Autowired
     PolicyService policyService;
 
-    @PostMapping(path = "/new", consumes = {"application/json"})
-    public PolicyResponseData createPolicy(@RequestBody PolicyRequestData policyReq) {
+    @PostMapping
+    public PolicyResponseDTO createPolicy(@RequestBody PolicyRequestDTO policyReq) {
         return policyService.savePolicy(policyReq);
     }
 
-    @GetMapping(path = "/all")
-    public List<PolicyResponseData> listPolicies() {
+    @GetMapping
+    public List<PolicyResponseDTO> listPolicies() {
 
         return policyService.listPolicies();
     }

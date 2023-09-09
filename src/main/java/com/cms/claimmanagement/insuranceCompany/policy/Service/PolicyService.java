@@ -1,9 +1,10 @@
 package com.cms.claimmanagement.insuranceCompany.policy.Service;
 
-import com.cms.claimmanagement.insuranceCompany.policy.Controller.PolicyResponseData;
+import com.cms.claimmanagement.insuranceCompany.policy.Controller.PolicyResponseDTO;
 import com.cms.claimmanagement.insuranceCompany.policy.Repository.PolicyEntity;
 import com.cms.claimmanagement.insuranceCompany.policy.Repository.PolicyRepository;
-import com.cms.claimmanagement.insuranceCompany.policy.Controller.PolicyRequestData;
+import com.cms.claimmanagement.insuranceCompany.policy.Controller.PolicyRequestDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,34 +21,39 @@ public class PolicyService {
     @Autowired
     public PolicyRepository policyRepository;
 
-    public List<PolicyResponseData> listPolicies(){
-        return policyRepository.findAll().stream().map(PolicyResponseData::new).toList();
+    public List<PolicyResponseDTO> listPolicies(){
+        List<PolicyResponseDTO> listedPolicies = policyRepository
+                .findAll()
+                .stream()
+                .map(PolicyEntity::getPolicyNo)
+                .map(policyResponse -> new PolicyResponseDTO())
+                .toList();
+    return listedPolicies;
     }
 
 
     private String generatePolicyNo(String lastName, String vehicleNo){
         String firstTwoLetters = lastName.substring(0,2);
         String firstFourNumbers = vehicleNo.substring(0,4);
-        DateFormat df = new SimpleDateFormat("yy");
-        String twoDigitYear = df.format(Calendar.getInstance().getTime());
 
-        return firstTwoLetters.toUpperCase()+firstFourNumbers+twoDigitYear;
+
+        return firstTwoLetters.toUpperCase()+firstFourNumbers+formattedYear("yy");
+    }
+    public String formattedYear(String format){
+        DateFormat df = new SimpleDateFormat(format);
+        String formattedDigits = df.format(Calendar.getInstance().getTime());
+        return formattedDigits;
     }
 
-    public PolicyResponseData savePolicy(PolicyRequestData policyRe){
-                    PolicyEntity policyRes;
-            policyRes = new PolicyEntity();
+    public PolicyResponseDTO savePolicy(final PolicyRequestDTO policyRe){
 
-                    policyRes.setPolicyNo(generatePolicyNo(policyRe.insuredLastName(), policyRe.vehicleNo()));
-                    policyRes.setInsuredFirstName(policyRe.insuredFirstName());
-                    policyRes.setInsuredLastName(policyRe.insuredLastName());
-                    policyRes.setDateOfInsurance(policyRe.dateOfInsurance());
-                    policyRes.setEmailId(policyRe.emailId());
-                    policyRes.setVehicleNo(policyRe.vehicleNo());
-                    policyRes.setStatus(policyRe.status());
-                    policyRepository.save(policyRes);
+        ModelMapper mapper = new ModelMapper();
 
-                    PolicyResponseData response = new PolicyResponseData(policyRes.getPolicyNo(),policyRes.InsuredFirstName());
+        PolicyEntity policy = mapper.map(policyRe, PolicyEntity.class);
+
+        PolicyEntity savedPolicy = policyRepository.save(policy);
+
+        PolicyResponseDTO response = mapper.map(savedPolicy, PolicyResponseDTO.class);
 
          return response;
 

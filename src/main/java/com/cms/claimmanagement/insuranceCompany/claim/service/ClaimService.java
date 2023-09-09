@@ -1,11 +1,11 @@
 package com.cms.claimmanagement.insuranceCompany.claim.service;
 
-import com.cms.claimmanagement.insuranceCompany.claim.controller.insuredClaimRequestDTO;
-import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimResponseData;
-import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimUpdateData;
+import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimResponseDTO;
+import com.cms.claimmanagement.insuranceCompany.claim.controller.ClaimUpdateDTO;
+import com.cms.claimmanagement.insuranceCompany.claim.controller.InsuredClaimRequestDTO;
 import com.cms.claimmanagement.insuranceCompany.claim.repository.ClaimDetails;
 import com.cms.claimmanagement.insuranceCompany.claim.repository.ClaimRepository;
-import com.cms.claimmanagement.insuranceCompany.policy.Repository.PolicyEntity;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +17,9 @@ import java.util.NoSuchElementException;
 
 @Service
 public class ClaimService {
+    private final String claimPrefix = "CL";
+    public final ModelMapper modelMapper = new ModelMapper();
+
     @Autowired
     ClaimRepository claimRepository;
 
@@ -25,53 +28,43 @@ public class ClaimService {
         DateFormat df = new SimpleDateFormat("yyyy");
         String fourDigitYear = df.format(Calendar.getInstance().getTime());
 
-        return "CL" + fourPolicyNumbers + fourDigitYear;
+        return claimPrefix + fourPolicyNumbers + fourDigitYear;
 
     }
 
-    public ClaimResponseData saveNewClaim(insuredClaimRequestDTO claimRequest) {
-        ClaimDetails claim = new ClaimDetails();
-        claim.setClaimId(generateClaimId(claimRequest.getPolicyNo()));
+    public ClaimResponseDTO saveNewClaim(InsuredClaimRequestDTO claimRequest) {
 
-        PolicyEntity policy = new PolicyEntity();
-        policy.setPolicyNo(claimRequest.getPolicyNo());
-
-        claim.setPolicy(policy);
-
-
-        claim.setDateOfAccident(claimRequest.getDateOfAccident());
-        claim.setEstimatedLoss(claimRequest.getEstimatedLoss());
+        ClaimDetails claim = modelMapper.map(claimRequest, ClaimDetails.class);
 
         ClaimDetails savedClaim = claimRepository.save(claim);
-        ClaimResponseData claimId = new ClaimResponseData();
-        claimId.setClaimId(savedClaim.getClaimId());
+        ClaimResponseDTO claimId = modelMapper.map(savedClaim, ClaimResponseDTO.class);
 
 
         return claimId;
     }
 
-    public List<ClaimResponseData> getAllOpenClaims() {
+    public List<ClaimResponseDTO> getAllOpenClaims() {
 
         return claimRepository
                 .findAll()
                 .stream()
                 .filter(ClaimDetails::isClaimStatus)
                 .map(ClaimDetails::getClaimId)
-                .map(claimResponse -> new ClaimResponseData())
+                .map(claimResponse -> new ClaimResponseDTO())
                 .toList();
     }
 
-    public ClaimUpdateData updateClaim(ClaimUpdateData updateData) throws NoSuchElementException {
-        ClaimDetails existingClaim = claimRepository.getReferenceById(updateData.claimId());
-        existingClaim.setClaimStatus(updateData.claimStatus());
-        existingClaim.setInsuranceCompanyApproval(updateData.insuranceCompanyApproval());
+    public ClaimUpdateDTO updateClaim(final ClaimUpdateDTO updateData) throws NoSuchElementException {
+
+        ClaimDetails existingClaim = claimRepository.getReferenceById(updateData.getClaimId());
+        existingClaim.setClaimStatus(updateData.isOpen());
+        existingClaim.setInsuranceCompanyApproval(updateData.isAmountApproved());
 
         ClaimDetails updatedClaim = claimRepository.save(existingClaim);
 
-        ClaimUpdateData claimUpdateDataResponse = new ClaimUpdateData(
-                updatedClaim.getClaimId(),
-                updatedClaim.isClaimStatus(),
-                updatedClaim.isInsuranceCompanyApproval());
+
+        ClaimUpdateDTO claimUpdateDataResponse = modelMapper.map(updatedClaim, ClaimUpdateDTO.class);
+
         return claimUpdateDataResponse;
     }
 }
